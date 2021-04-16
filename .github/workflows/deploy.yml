@@ -1,4 +1,4 @@
-name: Koa.js deploy
+name: express.js deploy
 
 on: 
   push:
@@ -10,20 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
-    - uses: webfactory/ssh-agent@v0.5.2
       with:
-          ssh-private-key: ${{ secrets.PUB_KEY }}
-  
-    - name: add known_hosts
-      run: cat .github/workflows/known_hosts >> ~/.ssh/known_hosts
+        fetch-depth: 0
+
+  - name: Install SSH key
+    uses: shimataro/ssh-key-action@v2
+    with:
+      key: ${{ secrets.PUB_KEY }}
+      name: id_rsa
+      known_hosts: ${{ secrets.KNOWN_HOSTS }}
     
     - name: git remote
       run: |
         git remote add lolipop ${{ secrets.MC_REP_REMOTE_KEY }}
-        git fetch lolipop master
 
     - name: deploy
-      run: git push lolipop master
+      run: git push lolipop HEAD:master
 
 
