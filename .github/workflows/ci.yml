@@ -22,7 +22,7 @@ jobs:
     
     - name: git remote
       run: |
-        git remote add lolipop ssh://sunny-kumamoto-2658@ssh-1.mc.lolipop.jp:40702/
+        git remote add lolipop ${{ secrets.MC_REP_REMOTE_KEY }}
         git remote update
 
     # - name: deploy
