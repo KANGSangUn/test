@@ -23,6 +23,7 @@ jobs:
     - name: git remote
       run: |
         git remote add lolipop ${{ secrets.MC_REP_REMOTE_KEY }}
+        git remote update
 
     - name: deploy
       run: git push lolipop HEAD:master
