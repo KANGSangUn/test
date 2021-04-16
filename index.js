@@ -1,8 +1,11 @@
-import express from 'express'
+const express = require('express')
 const app = express()
-  
-app.get('/', function (req, res) {
-  res.send('まじかよ')
-});
-  
-app.listen(80)
+const port = 80
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
