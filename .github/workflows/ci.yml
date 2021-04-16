@@ -12,10 +12,11 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        
     - uses: webfactory/ssh-agent@v0.5.2
       with:
           ssh-private-key: ${{ secrets.PUB_KEY }}
-    
+  
     - name: add known_hosts
       run: cat .github/workflows/known_hosts >> ~/.ssh/known_hosts
     
