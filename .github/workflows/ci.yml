@@ -1,0 +1,31 @@
+name: Koa.js deploy
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: webfactory/ssh-agent@v0.5.2
+      with:
+          ssh-private-key: ${{ secrets.PUB_KEY }}
+    
+    - name: add known_hosts
+      run: cat .github/workflows/known_hosts >> ~/.ssh/known_hosts
+    
+    - name: git remote add
+      run: git remote add lolipop ${{ secrets.MC_REP_REMOTE_KEY }}
+
+    - name: git remote update
+      run: git remote update
+
+    - name: deploy
+      run: git push lolipop master
+
+
