@@ -20,11 +20,10 @@ jobs:
     - name: add known_hosts
       run: cat .github/workflows/known_hosts >> ~/.ssh/known_hosts
     
-    - name: git remote add
-      run: git remote add lolipop ${{ secrets.MC_REP_REMOTE_KEY }}
-
-    # - name: git remote update
-    #   run: git remote update
+    - name: git remote
+      run: |
+        git remote add lolipop ${{ secrets.MC_REP_REMOTE_KEY }}
+        git remote update
 
     - name: deploy
       run: git push lolipop master
