@@ -2,7 +2,7 @@ import express from 'express'
 const app = express()
   
 app.get('/', function (req, res) {
-  res.send('Hesdasllo Worsasdld~ss~~')
+  res.send('まじかよ')
 });
   
 app.listen(80)
