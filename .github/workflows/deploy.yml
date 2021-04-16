@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+
     - uses: webfactory/ssh-agent@v0.5.2
       with:
           ssh-private-key: ${{ secrets.PUB_KEY }}
@@ -22,6 +25,6 @@ jobs:
         git remote add lolipop ${{ secrets.MC_REP_REMOTE_KEY }}
 
     - name: deploy
-      run: git push lolipop master
+      run: git push lolipop HEAD:master
 
 
